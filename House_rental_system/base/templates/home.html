@@ -1,0 +1,13 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Welcome to House Rental</h1>
+    <p class="lead">Find your perfect rental property with ease.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'listings' %}" role="button">View Listings</a>
+    <a class="btn btn-primary btn-lg" href="{% url 'add_property' %}" role="button">Add Property</a>
+    <!--Need add New property button-->
+</div>
+{% endblock %}
+

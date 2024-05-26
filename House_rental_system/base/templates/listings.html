@@ -1,0 +1,42 @@
+<!-- listings.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Available Properties</h2>
+    <a href="{% url 'add_property' %}" class="btn btn-success mb-3">Add Property</a>
+    <div class="row">
+        {% for property in properties %}
+        <div class="col-md-4 mb-4">
+            <div class="card {% if new_property and property.id == new_property.id %}border-success{% endif %} h-100">
+                <img src="{{ property.image.url }}" class="card-img-top" alt="Property Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ property.title }}</h5>
+                    <p class="card-text">{{ property.description }}</p>
+                    <p class="card-text"><strong>Price:</strong> ${{ property.price }}</p>
+                    <a href="{% url 'booking' property.id %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if new_property %}
+    <hr>
+    <h3>Recently Added Property:</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card border-success h-100">
+                <img src="{{ new_property.image.url }}" class="card-img-top" alt="Property Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ new_property.title }}</h5>
+                    <p class="card-text">{{ new_property.description }}</p>
+                    <p class="card-text"><strong>Price:</strong> ${{ new_property.price }}</p>
+                    <p class="text-success">Successfully added to the listings!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

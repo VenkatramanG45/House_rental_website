@@ -1,0 +1,27 @@
+<!-- my_bookings.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>My Bookings</h2>
+    <div class="row">
+        {% if bookings %}
+            {% for booking in bookings %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ booking.property.image.url }}" class="card-img-top" alt="Property Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ booking.property.title }}</h5>
+                        <p class="card-text">{{ booking.property.description }}</p>
+                        <p class="card-text"><strong>Price:</strong> ${{ booking.property.price }}</p>
+                        <p class="card-text"><strong>Booking Date:</strong> {{ booking.booking_date }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>You have no bookings.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

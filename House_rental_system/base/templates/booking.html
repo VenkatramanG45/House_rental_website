@@ -1,0 +1,42 @@
+<!-- booking.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Book Property</h2>
+    <div class="card mb-3">
+        <img src="{{ property.image.url }}" class="card-img-top" alt="Property Image">
+        <div class="card-body">
+            <h5 class="card-title">{{ property.title }}</h5>
+            <p class="card-text">{{ property.description }}</p>
+            <p class="card-text"><strong>Price:</strong> ${{ property.price }}</p>
+        </div>
+    </div>
+
+    <h3>Booking Details</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" class="form-control" id="full_name" name="full_name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="check_in">Check-In Date</label>
+            <input type="date" class="form-control" id="check_in" name="check_in" required>
+        </div>
+        <div class="form-group">
+            <label for="check_out">Check-Out Date</label>
+            <input type="date" class="form-control" id="check_out" name="check_out" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Book Now</button>
+    </form>
+</div>
+{% endblock %}
